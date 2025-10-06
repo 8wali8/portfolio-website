@@ -21,9 +21,7 @@ export const HeroSection = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I build high-performance systems and intelligent software solutions.
-            From exoplanet detection at NASA to robotics simulation platforms,
-            I create scalable applications that solve real-world problems.
+            I design scalable systems and intelligent software that bring ideas to life. From detecting exoplanets at NASA to simulating robotics environments, I focus on building reliable, elegant solutions that make technology work seamlessly for people.
           </p>
 
           <div className="pt-4 opacity-0 animate-fade-in-delay-4">
