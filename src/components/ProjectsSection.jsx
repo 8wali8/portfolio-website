@@ -4,7 +4,7 @@ const projects = [
   {
     id: 1,
     title: "StreamSense Analytics Platform",
-    description: "Enterprise-grade distributed AI platform for Twitch stream analysis. Originally a hackathon prototype, completely refactored into production-ready microservices handling 10K+ events/sec with 99.99% uptime. Features real-time sponsor detection, sentiment analysis, and comprehensive monitoring.",
+    description: "Production-ready microservices platform for Twitch stream analysis with real-time sponsor detection and sentiment analysis. Built with Spring Boot ecosystem, handling 10K+ events/sec with 99.99% uptime.",
     image: "/projects/project3.png",
     tags: ["Spring Boot", "Apache Kafka", "React", "GraphQL", "Kubernetes", "Docker", "Microservices", "Circuit Breakers"],
     demoUrl: "https://github.com/8wali8/StreamSense",
