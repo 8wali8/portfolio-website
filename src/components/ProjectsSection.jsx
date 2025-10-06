@@ -3,6 +3,15 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
+    title: "StreamSense Analytics Platform",
+    description: "Enterprise-grade distributed AI platform for Twitch stream analysis. Originally a hackathon prototype, completely refactored into production-ready microservices handling 10K+ events/sec with 99.99% uptime. Features real-time sponsor detection, sentiment analysis, and comprehensive monitoring.",
+    image: "/projects/project3.png",
+    tags: ["Spring Boot", "Apache Kafka", "React", "GraphQL", "Kubernetes", "Docker", "Microservices", "Circuit Breakers"],
+    demoUrl: "https://github.com/8wali8/StreamSense",
+    githubUrl: "https://github.com/8wali8/StreamSense",
+  },
+  {
+    id: 2,
     title: "Bitcoin Mining Optimization Platform",
     description: "24-hour hackathon solution for MARA Holdings featuring intelligent resource allocation and predictive optimization across multiple mining sites.",
     image: "/projects/project1.png",
@@ -11,22 +20,13 @@ const projects = [
     githubUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
   },
   {
-    id: 2,
+    id: 3,
     title: "Jumpseat Travel Platform",
     description: "Full-stack airline pricing application with real-time data processing, web scrapers collecting 9M+ data points from Google Flights, and high-performance pricing engine handling 2K+ requests/second.",
     image: "/projects/project2.png",
     tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping"],
     demoUrl: "https://www.jumpseatapp.com/",
     githubUrl: "https://github.com/Campus-Ventures",
-  },
-  {
-    id: 3,
-    title: "StreamSense Analytics Platform",
-    description: "AI-powered Twitch analytics platform with real-time sponsor detection using YOLO v8 + CLIP, speech-to-text via Whisper, and LSTM-based sentiment analysis of chat reactions.",
-    image: "/projects/project3.png",
-    tags: ["YOLO v8", "CLIP", "Whisper", "LSTM", "Computer Vision", "Streamlit"],
-    demoUrl: "https://devpost.com/software/streamsense",
-    githubUrl: "https://github.com/8wali8/RRWRA-Catapult",
   },
 ];
 
