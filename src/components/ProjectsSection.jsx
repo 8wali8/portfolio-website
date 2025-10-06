@@ -21,10 +21,10 @@ const projects = [
   },
   {
     id: 3,
-    title: "Jumpseat Travel Platform",
+    title: "Jumpseat College Travel Platform",
     description: "Comprehensive airline pricing platform providing travelers with real-time flight deals and price predictions to help save money on airfare bookings.",
     image: "/projects/project2.png",
-    tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping"],
+    tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping", "Git"],
     demoUrl: "https://www.jumpseatapp.com/",
     githubUrl: "https://github.com/Campus-Ventures",
   },
