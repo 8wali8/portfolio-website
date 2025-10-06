@@ -4,7 +4,7 @@ const projects = [
   {
     id: 1,
     title: "StreamSense Analytics Platform",
-    description: "Production-ready microservices platform for Twitch stream analysis with real-time sponsor detection and sentiment analysis. Built with Spring Boot ecosystem, handling 10K+ events/sec with 99.99% uptime.",
+    description: "AI-powered analytics platform for Twitch streamers featuring real-time sponsor detection and audience sentiment analysis to optimize content strategy and monetization.",
     image: "/projects/project3.png",
     tags: ["Spring Boot", "Apache Kafka", "React", "GraphQL", "Kubernetes", "Docker", "Microservices", "Circuit Breakers"],
     demoUrl: "https://github.com/8wali8/StreamSense",
@@ -22,7 +22,7 @@ const projects = [
   {
     id: 3,
     title: "Jumpseat Travel Platform",
-    description: "Full-stack airline pricing application with real-time data processing, web scrapers collecting 9M+ data points from Google Flights, and high-performance pricing engine handling 2K+ requests/second.",
+    description: "Comprehensive airline pricing platform providing travelers with real-time flight deals and price predictions to help save money on airfare bookings.",
     image: "/projects/project2.png",
     tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping"],
     demoUrl: "https://www.jumpseatapp.com/",
