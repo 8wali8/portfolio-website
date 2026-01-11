@@ -21,11 +21,6 @@ export const AboutSection = () => {
               on everything from exoplanet detection models to robotics simulation platforms.
             </p>
 
-            <p className="text-muted-foreground">
-              Currently seeking Summer 2026 SWE internships where I can build high-performance
-              systems, intelligent automation tools, and scalable applications.
-            </p>
-
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a href="#contact" className="cosmic-button">
                 {" "}
