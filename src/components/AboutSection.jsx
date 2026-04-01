@@ -18,7 +18,9 @@ export const AboutSection = () => {
             <p className="text-muted-foreground">
               I&apos;m a Computer Science & Statistics student at Purdue University with
               hands-on experience at NASA, CosmicBrain AI, and Jumpseat. I&apos;ve worked
-              on everything from exoplanet detection models to robotics simulation platforms.
+              on problems ranging from scientific modeling to real-time simulation systems,
+              with a focus on building reliable software that performs under tight timing
+              and compute constraints.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
@@ -45,7 +47,8 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">High-Performance Systems</h4>
                   <p className="text-muted-foreground">
-                    Building scalable systems and GPU-accelerated pipelines using Rust, Python, and CUDA.
+                    Building low-latency services and GPU-accelerated pipelines using Rust,
+                    Python, and CUDA, with emphasis on throughput, concurrency, and memory efficiency.
                   </p>
                 </div>
               </div>
@@ -58,7 +61,8 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">AI & Robotics</h4>
                   <p className="text-muted-foreground">
-                    Developing intelligent models and robotics simulation platforms using PyTorch and deep learning.
+                    Developing learning-based models and simulation workflows with PyTorch,
+                    including data-heavy experiments where numerical stability and runtime matter.
                   </p>
                 </div>
               </div>
@@ -72,7 +76,8 @@ export const AboutSection = () => {
                 <div className="text-left">
                   <h4 className="font-semibold text-lg">Full-Stack Engineering</h4>
                   <p className="text-muted-foreground">
-                    Creating production applications with React/Node.js, real-time features, and scalable backends.
+                    Creating production applications with React/Node.js, real-time features,
+                    and backends instrumented for observability and predictable performance.
                   </p>
                 </div>
               </div>

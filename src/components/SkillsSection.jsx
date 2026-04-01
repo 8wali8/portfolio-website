@@ -31,16 +31,6 @@ const getSkillLogo = (skillName) => {
     "Streamlit": "https://docs.streamlit.io/logo.svg",
     "REST APIs": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
     "WebSockets": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg",
-    "GraphQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-
-    // Distributed Systems & Microservices
-    "Spring Boot": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-    "Apache Kafka": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg",
-    "Microservices": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    "Circuit Breakers": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-    "Eureka": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-    "API Gateway": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
-    "Event-Driven Architecture": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg",
 
     // AI & Computer Vision
     "YOLO v8": "https://avatars.githubusercontent.com/u/26833433?s=200&v=4",
@@ -63,17 +53,12 @@ const getSkillLogo = (skillName) => {
 
     // Tools & Systems
     "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    "Kubernetes": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
     "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     "PostgreSQL": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
     "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-    "Cassandra": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cassandra/cassandra-original.svg",
     "Linux": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
     "AWS/GCP": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
     "FFmpeg": "https://upload.wikimedia.org/wikipedia/commons/7/76/FFmpeg_icon.svg",
-    "Prometheus": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg",
-    "Grafana": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg",
   };
 
   return logoMap[skillName] || "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/code/code-original.svg";
@@ -81,68 +66,53 @@ const getSkillLogo = (skillName) => {
 
 const skills = [
   // Languages
-  { name: "Python", level: 95, category: "languages", experience: "NASA (240K+ files), CosmicBrain AI (robotics), Jumpseat (pricing), StreamSense (AI/ML)" },
-  { name: "C++", level: 90, category: "languages", experience: "CosmicBrain AI (physics simulation), Systems programming" },
-  { name: "Rust", level: 85, category: "languages", experience: "CosmicBrain AI (simulation tooling), GPU parallelization" },
-  { name: "Java", level: 85, category: "languages", experience: "Android Studio interfaces, Enterprise development" },
-  { name: "SQL", level: 90, category: "languages", experience: "Jumpseat (PostgreSQL 9M+ records), Database management" },
-  { name: "JavaScript", level: 85, category: "languages", experience: "Jumpseat (React frontend), Medical Mutts (MERN stack)" },
+  { name: "C++", level: 90, category: "languages", experience: "CosmicBrain AI (physics simulation), performance-critical systems components" },
+  { name: "Rust", level: 85, category: "languages", experience: "CosmicBrain AI (simulation tooling), concurrent services and GPU parallelization" },
+  { name: "Python", level: 95, category: "languages", experience: "NASA (240K+ files), CosmicBrain AI (robotics), Jumpseat (pricing), StreamSense (AI/ML), data pipeline automation" },
+  { name: "SQL", level: 90, category: "languages", experience: "Jumpseat (PostgreSQL 9M+ records), query tuning and indexing for high-volume workloads" },
   { name: "TypeScript", level: 85, category: "languages", experience: "MARA Hackathon (Bitcoin mining platform)" },
+  { name: "JavaScript", level: 85, category: "languages", experience: "Jumpseat (React frontend), Medical Mutts (MERN stack)" },
+  { name: "Java", level: 85, category: "languages", experience: "Android Studio interfaces, Enterprise development" },
   { name: "R", level: 80, category: "languages", experience: "Purdue Statistics major, Data analysis" },
 
   // Web Development
-  { name: "React", level: 90, category: "web", experience: "Jumpseat, MARA Hackathon, Medical Mutts (1000+ users), StreamSense production dashboard" },
-  { name: "Node.js", level: 85, category: "web", experience: "Jumpseat backend, Medical Mutts, MARA Hackathon" },
-  { name: "Flask", level: 85, category: "web", experience: "MARA Hackathon (optimization API server), StreamSense ML services" },
+  { name: "Node.js", level: 85, category: "web", experience: "Jumpseat backend, Medical Mutts, MARA Hackathon, event-driven services" },
+  { name: "REST APIs", level: 90, category: "web", experience: "Jumpseat (secure APIs), Medical Mutts, instrumentation and latency-aware endpoints" },
+  { name: "WebSockets", level: 85, category: "web", experience: "Medical Mutts (real-time collaboration), low-latency event streams" },
+  { name: "Flask", level: 85, category: "web", experience: "MARA Hackathon (optimization API server)" },
+  { name: "React", level: 90, category: "web", experience: "Jumpseat, MARA Hackathon, Medical Mutts (1000+ users), real-time analytics interfaces" },
   { name: "Streamlit", level: 90, category: "web", experience: "StreamSense (analytics dashboard)" },
-  { name: "REST APIs", level: 90, category: "web", experience: "Jumpseat (secure APIs), Medical Mutts" },
-  { name: "WebSockets", level: 85, category: "web", experience: "Medical Mutts (real-time collaboration)" },
-  { name: "GraphQL", level: 85, category: "web", experience: "StreamSense (federation & real-time subscriptions)" },
-
-  // Distributed Systems & Microservices
-  { name: "Spring Boot", level: 90, category: "distributed", experience: "StreamSense (8+ microservices ecosystem)" },
-  { name: "Apache Kafka", level: 85, category: "distributed", experience: "StreamSense (10K+ events/sec processing)" },
-  { name: "Microservices", level: 85, category: "distributed", experience: "StreamSense (service discovery, fault tolerance)" },
-  { name: "Circuit Breakers", level: 80, category: "distributed", experience: "StreamSense (Hystrix for resilience)" },
-  { name: "Eureka", level: 80, category: "distributed", experience: "StreamSense (service discovery)" },
-  { name: "API Gateway", level: 80, category: "distributed", experience: "StreamSense (Zuul gateway with rate limiting)" },
-  { name: "Event-Driven Architecture", level: 85, category: "distributed", experience: "StreamSense (Kafka-based event streaming)" },
 
   // AI & Computer Vision
-  { name: "YOLO v8", level: 90, category: "ai", experience: "StreamSense (real-time logo detection)" },
-  { name: "CLIP", level: 85, category: "ai", experience: "StreamSense (semantic logo matching)" },
-  { name: "OpenAI Whisper", level: 85, category: "ai", experience: "StreamSense (speech-to-text transcription)" },
-  { name: "LSTM Networks", level: 85, category: "ai", experience: "StreamSense (sentiment analysis)" },
+  { name: "Computer Vision", level: 90, category: "ai", experience: "NASA (75% precision boost), StreamSense, runtime-conscious model deployment" },
   { name: "OpenCV", level: 90, category: "ai", experience: "StreamSense (video processing)" },
-  { name: "Computer Vision", level: 90, category: "ai", experience: "NASA (75% precision boost), StreamSense" },
+  { name: "YOLO v8", level: 90, category: "ai", experience: "StreamSense (real-time logo detection), inference pipeline optimization" },
+  { name: "CLIP", level: 85, category: "ai", experience: "StreamSense (semantic logo matching)" },
+  { name: "OpenAI Whisper", level: 85, category: "ai", experience: "StreamSense (speech-to-text transcription), streaming-aware processing" },
+  { name: "LSTM Networks", level: 85, category: "ai", experience: "StreamSense (sentiment analysis)" },
   { name: "NLP", level: 85, category: "ai", experience: "StreamSense (chat analysis, transcript processing)" },
 
   // Data & ML
-  { name: "PyTorch", level: 90, category: "data", experience: "NASA (exoplanet models), CosmicBrain AI (trajectory optimization)" },
+  { name: "Linear Programming", level: 85, category: "data", experience: "MARA Hackathon (resource optimization), constrained allocation under operational limits" },
+  { name: "Cython", level: 80, category: "data", experience: "Jumpseat (2K+ requests/sec optimization), hot-path acceleration" },
+  { name: "PyTorch", level: 90, category: "data", experience: "NASA (exoplanet models), CosmicBrain AI (trajectory optimization), model performance profiling" },
   { name: "TensorFlow", level: 85, category: "data", experience: "StreamSense (LSTM models), NASA workflows" },
-  { name: "Linear Programming", level: 85, category: "data", experience: "MARA Hackathon (resource optimization)" },
   { name: "PuLP Optimization", level: 80, category: "data", experience: "MARA Hackathon (mining allocation solver)" },
   { name: "Pandas", level: 90, category: "data", experience: "NASA (240K+ files), Caterpillar (500K+ records)" },
   { name: "Scikit-Learn", level: 85, category: "data", experience: "NASA (model benchmarking), ML workflows" },
   { name: "Web Scraping", level: 90, category: "data", experience: "Jumpseat (9M+ Google Flights data points)" },
-  { name: "Cython", level: 80, category: "data", experience: "Jumpseat (2K+ requests/sec optimization)" },
 
   // Tools & Systems
-  { name: "Docker", level: 85, category: "tools", experience: "Containerization across projects, StreamSense microservices" },
-  { name: "Kubernetes", level: 80, category: "tools", experience: "StreamSense (K8s deployment manifests)" },
+  { name: "Linux", level: 90, category: "tools", experience: "CosmicBrain AI (system optimization), NASA supercomputer, performance profiling workflows" },
+  { name: "PostgreSQL", level: 85, category: "tools", experience: "Jumpseat (9M+ records, CRON automation), indexing and query-plan tuning" },
+  { name: "Docker", level: 85, category: "tools", experience: "Containerization across projects" },
   { name: "Git", level: 95, category: "tools", experience: "Version control (NASA, internships, hackathons)" },
-  { name: "PostgreSQL", level: 85, category: "tools", experience: "Jumpseat (9M+ records, CRON automation), StreamSense" },
-  { name: "MongoDB", level: 80, category: "tools", experience: "MARA Hackathon, Medical Mutts (MERN stack)" },
-  { name: "Redis", level: 80, category: "tools", experience: "StreamSense (sub-millisecond caching)" },
-  { name: "Cassandra", level: 75, category: "tools", experience: "StreamSense (distributed database)" },
-  { name: "Linux", level: 90, category: "tools", experience: "CosmicBrain AI (system optimization), NASA supercomputer" },
-  { name: "AWS/GCP", level: 75, category: "tools", experience: "Cloud computing, deployment platforms, StreamSense (EKS/GKE)" },
   { name: "FFmpeg", level: 75, category: "tools", experience: "StreamSense (audio/video processing)" },
-  { name: "Prometheus", level: 75, category: "tools", experience: "StreamSense (metrics collection & monitoring)" },
-  { name: "Grafana", level: 75, category: "tools", experience: "StreamSense (operational dashboards)" },
+  { name: "AWS/GCP", level: 75, category: "tools", experience: "Cloud computing, deployment platforms" },
+  { name: "MongoDB", level: 80, category: "tools", experience: "MARA Hackathon, Medical Mutts (MERN stack)" },
 ];
 
-const categories = ["all", "languages", "web", "distributed", "ai", "data", "tools"];
+const categories = ["all", "languages", "web", "ai", "data", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");

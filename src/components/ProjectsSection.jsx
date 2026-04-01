@@ -3,30 +3,30 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "StreamSense Analytics Platform",
-    description: "AI-powered analytics platform for Twitch streamers featuring real-time sponsor detection and audience sentiment analysis to optimize content strategy and monetization.",
-    image: "/projects/project3.png",
-    tags: ["Spring Boot", "Apache Kafka", "React", "GraphQL", "Kubernetes", "Docker", "Microservices", "Circuit Breakers"],
-    demoUrl: "https://github.com/8wali8/StreamSense",
-    githubUrl: "https://github.com/8wali8/StreamSense",
-  },
-  {
-    id: 2,
     title: "Bitcoin Mining Optimization Platform",
-    description: "24-hour hackathon solution for MARA Holdings featuring intelligent resource allocation and predictive optimization across multiple mining sites.",
+    description: "24-hour hackathon solution for MARA Holdings featuring constraint-based resource allocation and predictive optimization across distributed mining sites.",
     image: "/projects/project1.png",
     tags: ["React", "Python", "Flask", "Linear Programming", "ML Forecasting", "TypeScript"],
     demoUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
     githubUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
   },
   {
-    id: 3,
-    title: "Jumpseat College Travel Platform",
-    description: "Comprehensive airline pricing platform providing travelers with real-time flight deals and price predictions to help save money on airfare bookings.",
+    id: 2,
+    title: "Jumpseat Travel Platform",
+    description: "Full-stack airline pricing application with real-time data processing, web scrapers collecting 9M+ data points from Google Flights, and a high-throughput pricing engine handling 2K+ requests/second.",
     image: "/projects/project2.png",
-    tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping", "Git"],
+    tags: ["React", "Node.js", "PostgreSQL", "Python", "Cython", "Web Scraping"],
     demoUrl: "https://www.jumpseatapp.com/",
     githubUrl: "https://github.com/Campus-Ventures",
+  },
+  {
+    id: 3,
+    title: "StreamSense Analytics Platform",
+    description: "AI-powered Twitch analytics platform with real-time sponsor detection using YOLO v8 + CLIP, speech-to-text via Whisper, and low-latency sentiment analysis of live chat reactions.",
+    image: "/projects/project3.png",
+    tags: ["YOLO v8", "CLIP", "Whisper", "LSTM", "Computer Vision", "Streamlit"],
+    demoUrl: "https://devpost.com/software/streamsense",
+    githubUrl: "https://github.com/8wali8/RRWRA-Catapult",
   },
 ];
 
@@ -40,8 +40,8 @@ export const ProjectsSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some key projects from my internships and research work. Each represents
-          real-world systems built for scale, performance, and production environments.
+          Here are selected projects from internships and research. They emphasize
+          data-intensive workflows, real-time decision loops, and production reliability.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
