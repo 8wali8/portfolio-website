@@ -46,18 +46,16 @@ export const ContactSection = () => {
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
+          Work <span className="text-primary">With Me</span>
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
+          Feel free to reach out about internships, projects, or collaborations.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">
-              {" "}
               Contact Information
             </h3>
 
@@ -104,12 +102,12 @@ export const ContactSection = () => {
             </div>
 
             <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
+              <h4 className="font-medium mb-4">Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="https://linkedin.com/in/ujjawal-prasad/" target="_blank">
+                <a href="https://linkedin.com/in/ujjawal-prasad/" target="_blank" rel="noreferrer">
                   <Linkedin size={32} className="text-muted-foreground hover:text-primary transition-colors" />
                 </a>
-                <a href="https://github.com/8wali8" target="_blank">
+                <a href="https://github.com/8wali8" target="_blank" rel="noreferrer">
                   <Github size={32} className="text-muted-foreground hover:text-primary transition-colors" />
                 </a>
               </div>
@@ -117,7 +115,7 @@ export const ContactSection = () => {
           </div>
 
           <div className="bg-card p-8 rounded-lg shadow-xs">
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
+            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
 
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -125,7 +123,6 @@ export const ContactSection = () => {
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Name
                 </label>
                 <input
@@ -133,8 +130,8 @@ export const ContactSection = () => {
                   id="name"
                   name="from_name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Ujjawal Prasad..."
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Your name"
                 />
               </div>
 
@@ -143,7 +140,6 @@ export const ContactSection = () => {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Email
                 </label>
                 <input
@@ -151,8 +147,8 @@ export const ContactSection = () => {
                   id="email"
                   name="from_email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="name@company.com"
                 />
               </div>
 
@@ -161,7 +157,6 @@ export const ContactSection = () => {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
                 >
-                  {" "}
                   Your Message
                 </label>
                 <textarea
@@ -169,8 +164,8 @@ export const ContactSection = () => {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+                  placeholder="Share a bit about what you&apos;re working on and how I can help."
                 />
               </div>
 
@@ -181,7 +176,7 @@ export const ContactSection = () => {
                   "cosmic-button w-full flex items-center justify-center gap-2"
                 )}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? "Sending..." : "Send System Brief"}
                 <Send size={16} />
               </button>
             </form>

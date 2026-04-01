@@ -6,27 +6,36 @@ export const HeroSection = () => {
       id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center px-4"
     >
-      <div className="container max-w-4xl mx-auto text-center z-10">
+      <div className="container max-w-5xl mx-auto text-center z-10">
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
-            <span className="text-primary opacity-0 animate-fade-in-delay-1">
-              {" "}
-              Ujjawal
+          <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-primary opacity-0 animate-fade-in">
+            Purdue CS + Statistics | Systems Engineering
+          </p>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl mx-auto">
+            <span className="block opacity-0 animate-fade-in-delay-1">
+              I build high-performance systems
             </span>
-            <span className="text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-              {" "}
-              Prasad
+            <span className="block text-primary opacity-0 animate-fade-in-delay-2">
+              that operate under load.
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I design scalable systems and intelligent software that bring ideas to life. From detecting exoplanets at NASA to building real-time simulation workflows, I focus on reliable, latency-aware engineering that keeps complex systems predictable under load.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto opacity-0 animate-fade-in-delay-3">
+            I build low-latency data and ML systems, from ingestion pipelines to
+            inference services, and validate them under load with profiling,
+            tracing, and benchmark loops.
           </p>
 
-          <div className="pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className="cosmic-button">
-              View My Work
+          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
+            <a href="#experience" className="cosmic-button">
+              View Experiences
+            </a>
+            <a
+              href="#projects"
+              className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+            >
+              See Case Studies
             </a>
           </div>
         </div>

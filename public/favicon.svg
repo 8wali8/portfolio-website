@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="UP favicon preview">
+  <rect width="64" height="64" rx="14" fill="#0B1220"/>
+  <path d="M18 17v20c0 7 5 12 12 12s12-5 12-12V17h-6v20c0 3.6-2.4 6-6 6s-6-2.4-6-6V17z" fill="#E2E8F0"/>
+  <path d="M44 17h-6v32h6V37h7c6 0 11-4.5 11-10s-5-10-11-10h-7zm0 6h7c2.4 0 5 1.6 5 4s-2.6 4-5 4h-7z" fill="#8B5CF6"/>
+</svg>
