@@ -3,26 +3,26 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "Bitcoin Mining Optimization Platform",
+    title: "RoboLense",
     summary:
-      "24-hour hackathon solution for MARA Holdings that turned multi-site mining data into sub-second allocation decisions.",
-    image: "/projects/project1.png",
+      "Overall Winner at Catapult 2026. Built the object detection pipeline and frontend for a system that converts human task videos into robot-ready MuJoCo simulations.",
+    image: "/projects/project4.png",
     metrics: [
-      { label: "Throughput", value: "Sub-second" },
-      { label: "Scale", value: "100+ sites" },
-      { label: "Impact", value: "15-25% profit lift" },
-      { label: "Efficiency", value: "20% less waste" },
+      { label: "Award", value: "Overall Winner" },
+      { label: "Hackathon", value: "Catapult 2026" },
+      { label: "Role", value: "Frontend + Object Detection" },
+      { label: "Output", value: "MuJoCo simulation" },
     ],
     architecture:
-      "Market / weather feeds -> forecasting models -> LP solver -> site dashboard -> allocation changes",
+      "Video upload -> pose pipeline + object pipeline -> scene reconstruction -> unified export -> MuJoCo simulation",
     bottleneck:
-      "The solver had to stay responsive while combining geography, power limits, and device constraints.",
+      "The hardest part was making noisy motion and object signals line up well enough to produce simulator-ready output from a single video.",
     tradeoff:
-      "Kept the stack simple and deterministic instead of hiding the optimization behind extra service layers.",
+      "Kept the system modular and service-oriented so each robotics and vision step could be improved independently without blocking the full pipeline.",
     optimization:
-      "Used constraint-aware allocation, fast data prep, and a tight feedback loop between model output and visualization.",
-    codeUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
-    liveUrl: "https://github.com/Sanjana-SKS/MaraHackathon25/blob/main/README.md",
+      "Used async distributed services, automated artifact generation, and a unified scene export flow to turn raw video into a working simulation end to end.",
+    codeUrl: "https://github.com/RRWRA-Catapult26",
+    liveUrl: "https://devpost.com/software/robolens",
   },
   {
     id: 2,
@@ -49,6 +49,29 @@ const projects = [
   },
   {
     id: 3,
+    title: "Bitcoin Mining Optimization Platform",
+    summary:
+      "24-hour hackathon solution for MARA Holdings that turned multi-site mining data into sub-second allocation decisions.",
+    image: "/projects/project1.png",
+    metrics: [
+      { label: "Throughput", value: "Sub-second" },
+      { label: "Scale", value: "100+ sites" },
+      { label: "Impact", value: "15-25% profit lift" },
+      { label: "Efficiency", value: "20% less waste" },
+    ],
+    architecture:
+      "Market / weather feeds -> forecasting models -> LP solver -> site dashboard -> allocation changes",
+    bottleneck:
+      "The solver had to stay responsive while combining geography, power limits, and device constraints.",
+    tradeoff:
+      "Kept the stack simple and deterministic instead of hiding the optimization behind extra service layers.",
+    optimization:
+      "Used constraint-aware allocation, fast data prep, and a tight feedback loop between model output and visualization.",
+    codeUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
+    liveUrl: "https://github.com/Sanjana-SKS/MaraHackathon25/blob/main/README.md",
+  },
+  {
+    id: 4,
     title: "StreamSense Analytics Platform",
     summary:
       "Distributed streaming analytics system for Twitch that fused video, audio, and chat into a real-time sponsorship intelligence pipeline.",

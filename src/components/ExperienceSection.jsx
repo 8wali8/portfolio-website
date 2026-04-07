@@ -59,13 +59,7 @@ export const ExperienceSection = () => {
                     <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-primary mb-3">
                         Work Experience
                     </p>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        Internships focused on performance, scale, and reliability.
-                    </h2>
-                    <p className="text-muted-foreground">
-                        Real systems experience across real-time tooling, inference optimization,
-                        high-throughput pricing, and large-scale scientific ETL.
-                    </p>
+                    <h2 className="text-3xl md:text-4xl font-bold">Internship Experience</h2>
                 </div>
 
                 <div className="space-y-5">
