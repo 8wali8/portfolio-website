@@ -147,7 +147,7 @@ export const SystemsSection = () => {
                 <h3 className="text-xl font-semibold">My working model</h3>
               </div>
               <pre className="overflow-x-auto rounded-xl bg-background p-4 text-left text-sm leading-6 text-foreground/80 border border-border">
-{`trace -> locate hot path -> patch -> benchmark -> compare -> ship
+                {`trace -> locate hot path -> patch -> benchmark -> compare -> ship
    |            |            |             |           |
 perf / CUDA   contention   Cython / SQL   load test   regression check`}
               </pre>

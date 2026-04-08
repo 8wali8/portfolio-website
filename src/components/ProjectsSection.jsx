@@ -90,7 +90,7 @@ const projects = [
       "Prioritized resilient event flow and observability over adding extra model complexity in the first release.",
     optimization:
       "Added backpressure-aware async queues, circuit-breaker protections, and load tests to reduce latency variance.",
-    codeUrl: "https://github.com/8wali8/RRWRA-Catapult",
+    codeUrl: "https://github.com/8wali8/StreamSense-Production",
     liveUrl: "https://devpost.com/software/streamsense",
   },
 ];
@@ -235,19 +235,19 @@ export const ProjectsSection = () => {
               </div>
             </article>
           ))}
-      </div>
+        </div>
 
-      <div className="text-center mt-12">
-        <a
-          className="cosmic-button w-fit flex items-center mx-auto gap-2"
-          target="_blank"
-          href="https://github.com/8wali8"
-          rel="noreferrer"
-        >
-          See More Code <ArrowRight size={16} />
-        </a>
+        <div className="text-center mt-12">
+          <a
+            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            target="_blank"
+            href="https://github.com/8wali8"
+            rel="noreferrer"
+          >
+            See More Code <ArrowRight size={16} />
+          </a>
+        </div>
       </div>
-    </div>
     </section >
   );
 };
