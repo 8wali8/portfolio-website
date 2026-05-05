@@ -1,43 +1,48 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4"
+      className="relative min-h-[70vh] flex flex-col justify-center pt-8"
     >
-      <div className="container max-w-5xl mx-auto text-center z-10">
-        <div className="space-y-6">
-          <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-primary opacity-0 animate-fade-in">
-            Purdue CS + Statistics | Systems Engineering
+      <div className="container">
+        <div className="max-w-3xl">
+          <p className="font-display text-xl opacity-0 animate-fade-in mb-8">
+            Ujjawal Prasad
           </p>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl mx-auto">
-            <span className="block opacity-0 animate-fade-in-delay-1">
-              I build high-performance systems
-            </span>
-            <span className="block text-primary opacity-0 animate-fade-in-delay-2">
-              that operate under load.
-            </span>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight opacity-0 animate-fade-in-delay-1">
+            I build {" "}
+            <em className="italic text-foreground/80">high-performance</em>{" "}
+            systems.
           </h1>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#experience" className="cosmic-button">
-              View Experiences
-            </a>
+          <p className="mt-10 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed opacity-0 animate-fade-in-delay-2">
+            Purdue CS + Statistics.
+          </p>
+
+          <div className="mt-10 flex items-center gap-8 text-sm opacity-0 animate-fade-in-delay-3">
             <a
               href="#projects"
-              className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+              className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
             >
-              See Case Studies
+              Selected work <ArrowUpRight size={14} />
+            </a>
+            <a
+              href="#experience"
+              className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
+            >
+              Experience <ArrowUpRight size={14} />
+            </a>
+            <a
+              href="#contact"
+              className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
+            >
+              Get in touch <ArrowUpRight size={14} />
             </a>
           </div>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-sm text-muted-foreground mb-2"> Scroll </span>
-        <ArrowDown className="h-5 w-5 text-primary" />
       </div>
     </section>
   );

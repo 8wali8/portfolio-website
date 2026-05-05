@@ -1,95 +1,59 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const projects = [
   {
     id: 1,
     title: "RoboLense",
     summary:
-      "Overall Winner at Catapult 2026. Built the object detection pipeline and frontend for a system that converts human task videos into robot-ready MuJoCo simulations.",
+      "Overall winner at Catapult 2026. Built the object-detection pipeline and frontend for a system that converts human task videos into robot-ready MuJoCo simulations.",
     image: "/projects/project4.png",
     metrics: [
       { label: "Award", value: "Overall Winner" },
       { label: "Hackathon", value: "Catapult 2026" },
-      { label: "Role", value: "Frontend + Object Detection" },
       { label: "Output", value: "MuJoCo simulation" },
     ],
-    architecture:
-      "Video upload -> pose pipeline + object pipeline -> scene reconstruction -> unified export -> MuJoCo simulation",
-    bottleneck:
-      "The hardest part was making noisy motion and object signals line up well enough to produce simulator-ready output from a single video.",
-    tradeoff:
-      "Kept the system modular and service-oriented so each robotics and vision step could be improved independently without blocking the full pipeline.",
-    optimization:
-      "Used async distributed services, automated artifact generation, and a unified scene export flow to turn raw video into a working simulation end to end.",
     codeUrl: "https://github.com/RRWRA-Catapult26",
     liveUrl: "https://devpost.com/software/robolens",
   },
   {
     id: 2,
-    title: "Jumpseat Travel Platform",
+    title: "Jumpseat",
     summary:
       "Airline pricing system that ingested large-scale fare data and pushed the hot path into a high-throughput pricing engine.",
     image: "/projects/project2.png",
     metrics: [
       { label: "Throughput", value: "2K+ req/s" },
-      { label: "Scale", value: "9M+ data points" },
-      { label: "Latency focus", value: "Hot-path tuning" },
-      { label: "Data store", value: "9M+ records" },
+      { label: "Scale", value: "9M+ records" },
+      { label: "Focus", value: "Hot-path tuning" },
     ],
-    architecture:
-      "Scrapers -> data store -> pricing engine -> API -> dashboard and booking flow",
-    bottleneck:
-      "The request path was too expensive when every query re-did work that could be cached or precomputed.",
-    tradeoff:
-      "Kept the service architecture straightforward so the optimization effort stayed concentrated on the path that mattered.",
-    optimization:
-      "Applied Cython on hot paths, tuned PostgreSQL indexes, and reduced repeated work before the request hit the database.",
     codeUrl: "https://github.com/Campus-Ventures/safe-stack-2",
     liveUrl: "https://www.jumpseatapp.com/",
   },
   {
     id: 3,
-    title: "Bitcoin Mining Optimization Platform",
+    title: "Bitcoin Mining Optimizer",
     summary:
-      "24-hour hackathon solution for MARA Holdings that turned multi-site mining data into sub-second allocation decisions.",
+      "24-hour hackathon for MARA Holdings. Turned multi-site mining data into sub-second allocation decisions across 100+ sites.",
     image: "/projects/project1.png",
     metrics: [
-      { label: "Throughput", value: "Sub-second" },
+      { label: "Latency", value: "Sub-second" },
       { label: "Scale", value: "100+ sites" },
-      { label: "Impact", value: "15-25% profit lift" },
-      { label: "Efficiency", value: "20% less waste" },
+      { label: "Impact", value: "+15-25% profit" },
     ],
-    architecture:
-      "Market / weather feeds -> forecasting models -> LP solver -> site dashboard -> allocation changes",
-    bottleneck:
-      "The solver had to stay responsive while combining geography, power limits, and device constraints.",
-    tradeoff:
-      "Kept the stack simple and deterministic instead of hiding the optimization behind extra service layers.",
-    optimization:
-      "Used constraint-aware allocation, fast data prep, and a tight feedback loop between model output and visualization.",
     codeUrl: "https://github.com/Sanjana-SKS/MaraHackathon25",
     liveUrl: "https://github.com/Sanjana-SKS/MaraHackathon25/blob/main/README.md",
   },
   {
     id: 4,
-    title: "StreamSense Analytics Platform",
+    title: "StreamSense",
     summary:
-      "Distributed streaming analytics system for Twitch that fused video, audio, and chat into a real-time sponsorship intelligence pipeline.",
+      "Distributed streaming analytics for Twitch — fused video, audio, and chat into a real-time sponsorship-intelligence pipeline.",
     image: "/projects/project3.png",
     metrics: [
-      { label: "Throughput", value: "10K+ events" },
-      { label: "Latency", value: "<200ms P95" },
-      { label: "Platform", value: "Kafka + Spring Boot" },
-      { label: "Observability", value: "Prometheus / Grafana / Zipkin" },
+      { label: "Throughput", value: "10K+ events/s" },
+      { label: "Latency", value: "<200ms p95" },
+      { label: "Stack", value: "Kafka + Spring Boot" },
     ],
-    architecture:
-      "Twitch ingestion -> Kafka topics -> Spring Boot services -> async ML inference -> GraphQL dashboard",
-    bottleneck:
-      "Keeping event ingestion and ML inference stable during burst traffic without cascading failures.",
-    tradeoff:
-      "Prioritized resilient event flow and observability over adding extra model complexity in the first release.",
-    optimization:
-      "Added backpressure-aware async queues, circuit-breaker protections, and load tests to reduce latency variance.",
     codeUrl: "https://github.com/8wali8/StreamSense-Production",
     liveUrl: "https://devpost.com/software/streamsense",
   },
@@ -97,152 +61,107 @@ const projects = [
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <p className="text-xs md:text-sm uppercase tracking-[0.35em] text-primary mb-3">
-            Selected case studies
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Systems built for load, latency, and reliability.
+    <section id="projects" className="py-16 md:py-20">
+      <div className="container">
+        <div className="max-w-3xl mb-10 md:mb-14">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
+            Selected work.
           </h2>
         </div>
 
-        <div className="space-y-8">
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-xs card-hover max-w-6xl mx-auto w-full"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
-                <div className="p-4 md:p-5 bg-secondary/20">
-                  <div className="space-y-4">
-                    <div className="overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
-                      <div className="flex items-center gap-2 border-b border-border bg-background/80 px-4 py-3">
-                        <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-                        <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
-                        <span className="ml-auto text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                          Screenshot
-                        </span>
-                      </div>
-                      <div className="aspect-video overflow-hidden bg-secondary/10 flex items-center justify-center p-3">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="h-full w-full object-contain transition-transform duration-500 hover:scale-105"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                      <div className="rounded-2xl border border-border bg-background p-4">
-                        <div className="text-xs uppercase tracking-[0.25em] text-primary mb-2">
-                          Architecture
-                        </div>
-                        <p className="text-sm text-foreground/80 leading-6 font-mono break-words">
-                          {project.architecture}
-                        </p>
-                      </div>
-
-                      <div className="rounded-2xl border border-border bg-background p-4">
-                        <div className="text-xs uppercase tracking-[0.25em] text-primary mb-2">
-                          Bottleneck
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-6">
-                          {project.bottleneck}
-                        </p>
-                      </div>
+        <div className="space-y-28 md:space-y-36">
+          {projects.map((project, index) => {
+            const reverse = index % 2 === 1;
+            return (
+              <article
+                key={project.id}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+              >
+                <div
+                  className={
+                    reverse
+                      ? "lg:col-span-7 lg:order-2"
+                      : "lg:col-span-7 lg:order-1"
+                  }
+                >
+                  <div className="overflow-hidden rounded-md border border-border bg-card transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl hover:-translate-y-1">
+                    <div className="aspect-[16/10] flex items-center justify-center p-4 md:p-6">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-contain transition-transform duration-300 ease-out hover:scale-[1.03]"
+                      />
                     </div>
                   </div>
                 </div>
 
-                <div className="p-6 md:p-7 lg:p-8 text-left space-y-4 self-start">
-                  <div className="inline-flex items-center rounded-full border border-border bg-background px-3 py-1 text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                    Case Study {String(project.id).padStart(2, "0")}
+                <div
+                  className={
+                    reverse
+                      ? "lg:col-span-5 lg:order-1"
+                      : "lg:col-span-5 lg:order-2"
+                  }
+                >
+                  <div className="font-numeric text-xs text-muted-foreground mb-4">
+                    {String(project.id).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
                   </div>
+                  <h3 className="font-display text-3xl md:text-4xl tracking-tight mb-4">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed mb-8">
+                    {project.summary}
+                  </p>
 
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-semibold mb-3 leading-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-7 max-w-2xl">
-                      {project.summary}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <dl className="grid grid-cols-3 gap-4 mb-8 border-t border-border pt-6">
                     {project.metrics.map((metric) => (
-                      <div
-                        key={metric.label}
-                        className="rounded-xl border border-border bg-background px-4 py-3"
-                      >
-                        <div className="text-[10px] uppercase tracking-[0.25em] text-primary mb-1">
+                      <div key={metric.label}>
+                        <dt className="text-[11px] text-muted-foreground mb-1">
                           {metric.label}
-                        </div>
-                        <div className="text-sm font-semibold text-foreground">
+                        </dt>
+                        <dd className="font-numeric text-sm text-foreground">
                           {metric.value}
-                        </div>
+                        </dd>
                       </div>
                     ))}
-                  </div>
+                  </dl>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="rounded-2xl border border-border bg-background p-4">
-                      <div className="text-xs uppercase tracking-[0.25em] text-primary mb-2">
-                        Tradeoff
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-6">
-                        {project.tradeoff}
-                      </p>
-                    </div>
-                    <div className="rounded-2xl border border-border bg-background p-4">
-                      <div className="text-xs uppercase tracking-[0.25em] text-primary mb-2">
-                        Optimization
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-6">
-                        {project.optimization}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-4 items-center pt-0.5">
+                  <div className="flex items-center gap-6 text-sm">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300"
+                      className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
                     >
-                      <ExternalLink size={18} />
-                      <span>Live / Write-up</span>
+                      Live <ArrowUpRight size={14} />
                     </a>
                     <a
                       href={project.codeUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300"
+                      className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
                     >
-                      <Github size={18} />
-                      <span>Code</span>
+                      Code <ArrowUpRight size={14} />
                     </a>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="mt-28 pt-10 border-t border-border">
           <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
-            target="_blank"
             href="https://github.com/8wali8"
+            target="_blank"
             rel="noreferrer"
+            className="link-underline link-underline-hover inline-flex items-center gap-2 text-sm text-foreground"
           >
-            See More Code <ArrowRight size={16} />
+            More on GitHub <ArrowUpRight size={14} />
           </a>
         </div>
       </div>
-    </section >
+    </section>
   );
 };
