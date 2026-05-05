@@ -61,7 +61,7 @@ const projects = [
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-16 md:py-20">
+    <section id="projects" className="py-10 md:py-14">
       <div className="container">
         <div className="max-w-3xl mb-10 md:mb-14">
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">

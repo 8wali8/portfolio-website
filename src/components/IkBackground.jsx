@@ -131,41 +131,50 @@ export const IkBackground = () => {
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0"
-      style={{ zIndex: 0 }}
-    >
-      <iframe
-        ref={iframeRef}
-        src="/ik-viz.html"
-        title=""
-        tabIndex={-1}
-        className="absolute border-0"
-        style={{
-          opacity: 0.40,
-          pointerEvents: "none",
-          width: "130%",
-          height: "130%",
-          top: "-15%",
-          left: "-15%",
-        }}
-      />
+    <>
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 55%, hsl(38 30% 95% / 0.7) 100%)",
-        }}
-      />
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0"
+        style={{ zIndex: 0 }}
+      >
+        <iframe
+          ref={iframeRef}
+          src="/ik-viz.html"
+          title=""
+          tabIndex={-1}
+          className="absolute border-0"
+          style={{
+            opacity: 0.4,
+            pointerEvents: "none",
+            width: "130%",
+            height: "130%",
+            top: "-15%",
+            left: "-15%",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 55%, hsl(38 30% 95% / 0.7) 100%)",
+          }}
+        />
+      </div>
       <div
-        className="absolute bottom-4 right-4 font-numeric text-[10px] uppercase tracking-[0.18em] text-foreground/40 leading-snug text-right"
-        style={{ pointerEvents: "none" }}
+        className="fixed bottom-4 right-4 font-numeric text-[10px] uppercase tracking-[0.18em] text-foreground/40 leading-snug text-right pointer-events-none"
+        style={{ zIndex: 50 }}
       >
         Background — custom IK solver
         <br />
-        for 6 DOF robotic arm
+        <a
+          href="https://devpost.com/software/oneshot-03ucli"
+          target="_blank"
+          rel="noreferrer"
+          className="pointer-events-auto underline decoration-foreground/30 hover:decoration-foreground/70 hover:text-foreground/70 transition-colors duration-200"
+        >
+          for 6 DOF robotic arm
+        </a>
       </div>
-    </div>
+    </>
   );
 };
