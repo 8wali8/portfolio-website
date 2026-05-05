@@ -21,12 +21,6 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I build low-latency data and ML systems, from ingestion pipelines to
-            inference services, and validate them under load with profiling,
-            tracing, and benchmark loops.
-          </p>
-
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4 opacity-0 animate-fade-in-delay-4">
             <a href="#experience" className="cosmic-button">
               View Experiences

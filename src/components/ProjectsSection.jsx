@@ -106,11 +106,6 @@ export const ProjectsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Systems built for load, latency, and reliability.
           </h2>
-          <p className="text-muted-foreground">
-            Each project is framed as a problem, a constraint, and a measured
-            outcome. The layout is meant to scan quickly: what it did, what hurt,
-            and how it was improved.
-          </p>
         </div>
 
         <div className="space-y-8">

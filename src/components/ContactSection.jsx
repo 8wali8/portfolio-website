@@ -49,10 +49,6 @@ export const ContactSection = () => {
           Work <span className="text-primary">With Me</span>
         </h2>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Feel free to reach out about internships, projects, or collaborations.
-        </p>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">
@@ -176,7 +172,7 @@ export const ContactSection = () => {
                   "cosmic-button w-full flex items-center justify-center gap-2"
                 )}
               >
-                {isSubmitting ? "Sending..." : "Send System Brief"}
+                {isSubmitting ? "Sending..." : "Send Email"}
                 <Send size={16} />
               </button>
             </form>
