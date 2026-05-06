@@ -134,7 +134,7 @@ export const IkBackground = () => {
     <>
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0"
+        className="pointer-events-none fixed inset-0 overflow-hidden"
         style={{ zIndex: 0 }}
       >
         <iframe
@@ -142,7 +142,7 @@ export const IkBackground = () => {
           src="/ik-viz.html"
           title=""
           tabIndex={-1}
-          className="absolute border-0"
+          className="absolute border-0 ik-bg-iframe"
           style={{
             opacity: 0.4,
             pointerEvents: "none",

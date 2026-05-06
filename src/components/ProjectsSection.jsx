@@ -69,7 +69,7 @@ export const ProjectsSection = () => {
           </h2>
         </div>
 
-        <div className="space-y-28 md:space-y-36">
+        <div className="space-y-14 md:space-y-36">
           {projects.map((project, index) => {
             const reverse = index % 2 === 1;
             return (
@@ -151,7 +151,7 @@ export const ProjectsSection = () => {
           })}
         </div>
 
-        <div className="mt-28 pt-10 border-t border-border">
+        <div className="mt-14 md:mt-28 pt-10 border-t border-border">
           <a
             href="https://github.com/8wali8"
             target="_blank"

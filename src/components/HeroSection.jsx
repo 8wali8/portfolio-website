@@ -22,7 +22,7 @@ export const HeroSection = () => {
             Purdue CS + Statistics.
           </p>
 
-          <div className="mt-10 flex items-center gap-8 text-sm opacity-0 animate-fade-in-delay-3">
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm opacity-0 animate-fade-in-delay-3">
             <a
               href="#projects"
               className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
