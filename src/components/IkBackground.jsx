@@ -1,13 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const IkBackground = () => {
   const iframeRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
     let raf = 0;
+    let fadeTimer = 0;
     let stopped = false;
 
     const tune = () => {
@@ -109,6 +111,12 @@ export const IkBackground = () => {
       };
       raf = requestAnimationFrame(tick);
 
+      // Plotly's relayout/restyle calls are async — wait for the first
+      // styled frame to actually be painted before revealing the iframe.
+      fadeTimer = setTimeout(() => {
+        if (!stopped) setReady(true);
+      }, 250);
+
       return true;
     };
 
@@ -126,6 +134,7 @@ export const IkBackground = () => {
     return () => {
       stopped = true;
       cancelAnimationFrame(raf);
+      clearTimeout(fadeTimer);
       iframe.removeEventListener("load", onLoad);
     };
   }, []);
@@ -135,7 +144,11 @@ export const IkBackground = () => {
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 overflow-hidden"
-        style={{ zIndex: 0 }}
+        style={{
+          zIndex: 0,
+          opacity: ready ? 1 : 0,
+          transition: "opacity 1s ease",
+        }}
       >
         <iframe
           ref={iframeRef}
