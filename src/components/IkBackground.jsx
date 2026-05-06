@@ -1,8 +1,31 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, RotateCcw } from "lucide-react";
+
+const YAW_STEP = Math.PI / 8;  // ~22.5° per click
+const PITCH_STEP = 0.2;
+const PITCH_MAX = 1.4;
+const PITCH_MIN = -0.3;
+const SPRING = 0.04;  // stiffness — higher = snappier
+const DAMPING = 0.85;  // velocity retention — lower = more friction
 
 export const IkBackground = () => {
   const iframeRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const targetYawRef = useRef(0);
+  const targetPitchRef = useRef(0);
+
+  const adjust = (dir) => {
+    if (dir === "left") targetYawRef.current -= YAW_STEP;
+    if (dir === "right") targetYawRef.current += YAW_STEP;
+    if (dir === "up") targetPitchRef.current = Math.min(PITCH_MAX, targetPitchRef.current + PITCH_STEP);
+    if (dir === "down") targetPitchRef.current = Math.max(PITCH_MIN, targetPitchRef.current - PITCH_STEP);
+  };
+
+  // Zeroing the targets is enough — the spring smoothly returns the camera.
+  const handleReset = () => {
+    targetYawRef.current = 0;
+    targetPitchRef.current = 0;
+  };
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -95,15 +118,29 @@ export const IkBackground = () => {
       let dir = 1;
       const radius = 2.5;
       const swingAmp = Math.PI * 0.75;
+      // Spring-damper state — internal to the loop, no refs needed.
+      let curYaw = 0, curPitch = 0;
+      let velYaw = 0, velPitch = 0;
       const tick = () => {
         if (stopped) return;
         angle += 0.0015 * dir;
         if (angle >= swingAmp || angle <= -swingAmp) dir *= -1;
+        // Accelerate toward target, decelerate on approach.
+        velYaw = velYaw * DAMPING + (targetYawRef.current - curYaw) * SPRING;
+        velPitch = velPitch * DAMPING + (targetPitchRef.current - curPitch) * SPRING;
+        // Clamp: if this step would cross the target, land exactly on it.
+        // Opposite signs on (cur - target) vs (cur + vel - target) means we crossed.
+        if ((curYaw + velYaw - targetYawRef.current) * (curYaw - targetYawRef.current) < 0)
+          velYaw = targetYawRef.current - curYaw;
+        if ((curPitch + velPitch - targetPitchRef.current) * (curPitch - targetPitchRef.current) < 0)
+          velPitch = targetPitchRef.current - curPitch;
+        curYaw += velYaw;
+        curPitch += velPitch;
         Plotly.relayout(el, {
           "scene.camera.eye": {
-            x: radius * Math.cos(angle),
-            y: radius * Math.sin(angle),
-            z: 0.55,
+            x: radius * Math.cos(angle + curYaw),
+            y: radius * Math.sin(angle + curYaw),
+            z: 0.55 + curPitch,
           },
           "scene.camera.center": { x: 0, y: 0, z: -0.15 },
         });
@@ -139,6 +176,9 @@ export const IkBackground = () => {
     };
   }, []);
 
+  const btnCls =
+    "w-7 h-7 flex items-center justify-center rounded border border-border/50 bg-background/70 backdrop-blur-sm text-foreground/45 hover:text-foreground/80 hover:bg-background/90 transition-colors duration-150 cursor-pointer select-none";
+
   return (
     <>
       <div
@@ -173,6 +213,42 @@ export const IkBackground = () => {
           }}
         />
       </div>
+
+      {ready && (
+        <div
+          className="fixed top-4 right-4 flex flex-col items-center gap-1"
+          style={{ zIndex: 50 }}
+        >
+          <div className="grid grid-cols-3 gap-1">
+            <span />
+            <button className={btnCls} onClick={() => adjust("up")} aria-label="Tilt up">
+              <ArrowUp size={13} strokeWidth={1.75} />
+            </button>
+            <span />
+            <button className={btnCls} onClick={() => adjust("left")} aria-label="Rotate left">
+              <ArrowLeft size={13} strokeWidth={1.75} />
+            </button>
+            <span />
+            <button className={btnCls} onClick={() => adjust("right")} aria-label="Rotate right">
+              <ArrowRight size={13} strokeWidth={1.75} />
+            </button>
+            <span />
+            <button className={btnCls} onClick={() => adjust("down")} aria-label="Tilt down">
+              <ArrowDown size={13} strokeWidth={1.75} />
+            </button>
+            <span />
+          </div>
+          <button
+            className="mt-0.5 h-6 w-full px-2 flex items-center justify-center gap-1 rounded border border-border/50 bg-background/70 backdrop-blur-sm text-foreground/45 hover:text-foreground/80 hover:bg-background/90 transition-colors duration-150 cursor-pointer select-none font-numeric text-[9px] uppercase tracking-[0.14em]"
+            onClick={handleReset}
+            aria-label="Reset orientation"
+          >
+            <RotateCcw size={9} strokeWidth={1.75} />
+            reset
+          </button>
+        </div>
+      )}
+
       <div
         className="fixed bottom-4 right-4 font-numeric text-[10px] uppercase tracking-[0.18em] text-foreground/40 leading-snug text-right pointer-events-none"
         style={{ zIndex: 50 }}
