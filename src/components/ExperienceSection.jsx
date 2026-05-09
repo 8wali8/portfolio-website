@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
 const experiences = [
   {
     company: "Netflix",
@@ -45,48 +48,67 @@ const experiences = [
 ];
 
 export const ExperienceSection = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <section id="experience" className="py-10 md:py-14 border-t border-border">
+    <section id="experience" className="flex-1 flex flex-col justify-center border-t border-border">
       <div className="container">
-        <div className="max-w-3xl mb-10">
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="flex items-center gap-3 py-5 md:py-7 text-left w-full"
+          aria-expanded={open}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
             Experience.
           </h2>
+          <ChevronDown
+            size={28}
+            strokeWidth={1.25}
+            className={`text-foreground/40 flex-shrink-0 transition-transform duration-500 ease-out ${open ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        <div
+          className={`grid transition-[grid-template-rows] duration-500 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+        >
+          <div className="overflow-hidden">
+            <div className={`transition-opacity duration-300 delay-150 ${open ? "opacity-100" : "opacity-0"}`}>
+              <ol className="divide-y divide-border pb-10">
+                {experiences.map((item) => (
+                  <li
+                    key={`${item.company}-${item.period}`}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-12"
+                  >
+                    <div className="md:col-span-3">
+                      <div className="font-numeric text-xs text-muted-foreground">
+                        {item.period}
+                      </div>
+                      <div className="font-numeric text-xs text-muted-foreground mt-1">
+                        {item.location}
+                      </div>
+                    </div>
+
+                    <div className="md:col-span-9">
+                      <h3 className="font-display text-2xl md:text-3xl tracking-tight">
+                        {item.role}
+                        <span className="text-muted-foreground">, </span>
+                        <em className="italic">{item.company}</em>
+                      </h3>
+                      <ul className="mt-4 space-y-2 text-muted-foreground leading-relaxed max-w-2xl">
+                        {item.points.map((point) => (
+                          <li key={point} className="flex gap-3">
+                            <span className="select-none text-foreground/40">—</span>
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
         </div>
-
-        <ol className="divide-y divide-border">
-          {experiences.map((item) => (
-            <li
-              key={`${item.company}-${item.period}`}
-              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-12"
-            >
-              <div className="md:col-span-3">
-                <div className="font-numeric text-xs text-muted-foreground">
-                  {item.period}
-                </div>
-                <div className="font-numeric text-xs text-muted-foreground mt-1">
-                  {item.location}
-                </div>
-              </div>
-
-              <div className="md:col-span-9">
-                <h3 className="font-display text-2xl md:text-3xl tracking-tight">
-                  {item.role}
-                  <span className="text-muted-foreground">, </span>
-                  <em className="italic">{item.company}</em>
-                </h3>
-                <ul className="mt-4 space-y-2 text-muted-foreground leading-relaxed max-w-2xl">
-                  {item.points.map((point) => (
-                    <li key={point} className="flex gap-3">
-                      <span className="select-none text-foreground/40">—</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );

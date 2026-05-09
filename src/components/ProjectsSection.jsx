@@ -1,4 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 
 const projects = [
   {
@@ -60,106 +61,125 @@ const projects = [
 ];
 
 export const ProjectsSection = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <section id="projects" className="py-10 md:py-14">
+    <section id="projects" className="flex-1 flex flex-col justify-center border-t border-border">
       <div className="container">
-        <div className="max-w-3xl mb-10 md:mb-14">
+        <button
+          onClick={() => setOpen((o) => !o)}
+          className="flex items-center gap-3 py-5 md:py-7 text-left w-full"
+          aria-expanded={open}
+        >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
             Selected work.
           </h2>
-        </div>
+          <ChevronDown
+            size={28}
+            strokeWidth={1.25}
+            className={`text-foreground/40 flex-shrink-0 transition-transform duration-500 ease-out ${open ? "rotate-180" : ""}`}
+          />
+        </button>
 
-        <div className="space-y-14 md:space-y-36">
-          {projects.map((project, index) => {
-            const reverse = index % 2 === 1;
-            return (
-              <article
-                key={project.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
-              >
-                <div
-                  className={
-                    reverse
-                      ? "lg:col-span-7 lg:order-2"
-                      : "lg:col-span-7 lg:order-1"
-                  }
-                >
-                  <div className="overflow-hidden rounded-md border border-border bg-card transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl hover:-translate-y-1">
-                    <div className="aspect-[16/10] flex items-center justify-center p-4 md:p-6">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-contain transition-transform duration-300 ease-out hover:scale-[1.03]"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className={
-                    reverse
-                      ? "lg:col-span-5 lg:order-1"
-                      : "lg:col-span-5 lg:order-2"
-                  }
-                >
-                  <div className="font-numeric text-xs text-muted-foreground mb-4">
-                    {String(project.id).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-                  </div>
-                  <h3 className="font-display text-3xl md:text-4xl tracking-tight mb-4">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-8">
-                    {project.summary}
-                  </p>
-
-                  <dl className="grid grid-cols-3 gap-4 mb-8 border-t border-border pt-6">
-                    {project.metrics.map((metric) => (
-                      <div key={metric.label}>
-                        <dt className="text-[11px] text-muted-foreground mb-1">
-                          {metric.label}
-                        </dt>
-                        <dd className="font-numeric text-sm text-foreground">
-                          {metric.value}
-                        </dd>
+        <div
+          className={`grid transition-[grid-template-rows] duration-500 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+        >
+          <div className="overflow-hidden">
+            <div className={`transition-opacity duration-300 delay-150 ${open ? "opacity-100" : "opacity-0"}`}>
+              <div className="space-y-14 md:space-y-36">
+                {projects.map((project, index) => {
+                  const reverse = index % 2 === 1;
+                  return (
+                    <article
+                      key={project.id}
+                      className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
+                    >
+                      <div
+                        className={
+                          reverse
+                            ? "lg:col-span-7 lg:order-2"
+                            : "lg:col-span-7 lg:order-1"
+                        }
+                      >
+                        <div className="overflow-hidden rounded-md border border-border bg-card transition-all duration-300 ease-out hover:scale-[1.025] hover:shadow-xl hover:-translate-y-1">
+                          <div className="aspect-[16/10] flex items-center justify-center p-4 md:p-6">
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-full w-full object-contain transition-transform duration-300 ease-out hover:scale-[1.03]"
+                            />
+                          </div>
+                        </div>
                       </div>
-                    ))}
-                  </dl>
 
-                  <div className="flex items-center gap-6 text-sm">
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
-                    >
-                      Live <ArrowUpRight size={14} />
-                    </a>
-                    <a
-                      href={project.codeUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
-                    >
-                      Code <ArrowUpRight size={14} />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+                      <div
+                        className={
+                          reverse
+                            ? "lg:col-span-5 lg:order-1"
+                            : "lg:col-span-5 lg:order-2"
+                        }
+                      >
+                        <div className="font-numeric text-xs text-muted-foreground mb-4">
+                          {String(project.id).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
+                        </div>
+                        <h3 className="font-display text-3xl md:text-4xl tracking-tight mb-4">
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed mb-8">
+                          {project.summary}
+                        </p>
 
-        <div className="mt-14 md:mt-28 pt-10 border-t border-border">
-          <a
-            href="https://github.com/8wali8"
-            target="_blank"
-            rel="noreferrer"
-            className="link-underline link-underline-hover inline-flex items-center gap-2 text-sm text-foreground"
-          >
-            More on GitHub <ArrowUpRight size={14} />
-          </a>
+                        <dl className="grid grid-cols-3 gap-4 mb-8 border-t border-border pt-6">
+                          {project.metrics.map((metric) => (
+                            <div key={metric.label}>
+                              <dt className="text-[11px] text-muted-foreground mb-1">
+                                {metric.label}
+                              </dt>
+                              <dd className="font-numeric text-sm text-foreground">
+                                {metric.value}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+
+                        <div className="flex items-center gap-6 text-sm">
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
+                          >
+                            Live <ArrowUpRight size={14} />
+                          </a>
+                          <a
+                            href={project.codeUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link-underline link-underline-hover inline-flex items-center gap-1 text-foreground"
+                          >
+                            Code <ArrowUpRight size={14} />
+                          </a>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="mt-14 md:mt-28 pt-10 border-t border-border pb-10">
+                <a
+                  href="https://github.com/8wali8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link-underline link-underline-hover inline-flex items-center gap-2 text-sm text-foreground"
+                >
+                  More on GitHub <ArrowUpRight size={14} />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
