@@ -6,10 +6,10 @@ import { ContactSection } from "../components/ContactSection";
 export const Home = () => {
   return (
     <div
-      className="relative min-h-screen text-foreground overflow-x-hidden"
+      className="relative min-h-screen flex flex-col text-foreground overflow-x-hidden"
       style={{ zIndex: 1 }}
     >
-      <main>
+      <main className="flex flex-col flex-1">
         <HeroSection />
         <ExperienceSection />
         <ProjectsSection />
