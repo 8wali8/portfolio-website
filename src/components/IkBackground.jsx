@@ -116,7 +116,7 @@ export const IkBackground = () => {
 
       let angle = 0;
       let dir = 1;
-      const radius = 2.5;
+      const radius = 3.8;
       const swingAmp = Math.PI * 0.75;
       // Spring-damper state — internal to the loop, no refs needed.
       let curYaw = 0, curPitch = 0;
@@ -201,8 +201,8 @@ export const IkBackground = () => {
             pointerEvents: "none",
             width: "130%",
             height: "130%",
-            top: "-15%",
-            left: "-15%",
+            top: "-5%",
+            left: "5%",
           }}
         />
         <div
