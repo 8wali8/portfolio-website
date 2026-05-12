@@ -1,16 +1,27 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { HeroSection } from "../components/HeroSection";
 import { ExperienceSection, ExperienceContent } from "../components/ExperienceSection";
 import { ProjectsSection, ProjectsContent } from "../components/ProjectsSection";
 import { ContactSection, ContactContent } from "../components/ContactSection";
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return isMobile;
+}
+
 export const Home = () => {
+  const isMobile = useIsMobile();
   const [openSection, setOpenSection] = useState(null);
   const [shownSection, setShownSection] = useState(null);
   const [exiting, setExiting] = useState(false);
   const exitTimer = useRef(null);
 
-  // Heading sequence: hero done → exp → proj → contact
   const [expStarted, setExpStarted] = useState(false);
   const [projStarted, setProjStarted] = useState(false);
   const [contactStarted, setContactStarted] = useState(false);
@@ -34,6 +45,49 @@ export const Home = () => {
       setShownSection(id);
     }
   };
+
+  if (isMobile) {
+    return (
+      <div className="pb-16 text-foreground" style={{ zIndex: 1 }}>
+        <HeroSection onDone={onHeroDone} />
+
+        <ExperienceSection
+          open={openSection === "experience"}
+          onToggle={() => toggle("experience")}
+          started={expStarted}
+          onHeadingDone={onExpDone}
+        />
+        {shownSection === "experience" && (
+          <div className={exiting ? "animate-unroll-out" : "animate-unroll"}>
+            <ExperienceContent />
+          </div>
+        )}
+
+        <ProjectsSection
+          open={openSection === "projects"}
+          onToggle={() => toggle("projects")}
+          started={projStarted}
+          onHeadingDone={onProjDone}
+        />
+        {shownSection === "projects" && (
+          <div className={exiting ? "animate-unroll-out" : "animate-unroll"}>
+            <ProjectsContent />
+          </div>
+        )}
+
+        <ContactSection
+          open={openSection === "contact"}
+          onToggle={() => toggle("contact")}
+          started={contactStarted}
+        />
+        {shownSection === "contact" && (
+          <div className={exiting ? "animate-unroll-out" : "animate-unroll"}>
+            <ContactContent />
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div

@@ -216,7 +216,7 @@ export const IkBackground = () => {
 
       {ready && (
         <div
-          className="fixed top-4 right-4 flex flex-col items-center gap-1"
+          className="hidden md:flex fixed top-4 right-4 flex-col items-center gap-1"
           style={{ zIndex: 50 }}
         >
           <div className="grid grid-cols-3 gap-1">
@@ -250,7 +250,7 @@ export const IkBackground = () => {
       )}
 
       <div
-        className="fixed bottom-4 right-4 font-numeric text-[10px] uppercase tracking-[0.18em] text-foreground/40 leading-snug text-right pointer-events-none"
+        className="hidden md:block fixed bottom-4 right-4 font-numeric text-[10px] uppercase tracking-[0.18em] text-foreground/40 leading-snug text-right pointer-events-none"
         style={{ zIndex: 50 }}
       >
         Background — custom IK solver

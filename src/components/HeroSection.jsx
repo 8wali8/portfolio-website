@@ -171,7 +171,7 @@ export const HeroSection = ({ onDone }) => {
   return (
     <section
       id="hero"
-      className="relative flex flex-col justify-center flex-1"
+      className="relative flex flex-col justify-center flex-1 py-12 md:py-0"
     >
       <div className="container">
         <div className="max-w-3xl">
