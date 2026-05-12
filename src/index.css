@@ -26,6 +26,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -35,9 +36,49 @@
   --animate-cursor-blink: cursor-blink 1s step-end infinite;
 
   @keyframes cursor-blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
   }
+
+  @keyframes unroll {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes unroll-out {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+}
+
+.animate-unroll {
+  animation: unroll 0.35s ease-out forwards;
+}
+
+.animate-unroll-out {
+  animation: unroll-out 0.25s ease-in forwards;
+  pointer-events: none;
 }
 
 @layer base {
@@ -82,10 +123,11 @@
   margin-inline: auto;
   padding-inline: 1.5rem;
 
-  @media (width >= 640px) {
+  @media (width >=640px) {
     padding-inline: 2rem;
   }
-  @media (width >= 1024px) {
+
+  @media (width >=1024px) {
     max-width: 1100px;
   }
 }
@@ -120,6 +162,23 @@
     background-size: 100% 1px;
     background-position: 0 100%;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
 }
 
 #root {

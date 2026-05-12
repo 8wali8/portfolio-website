@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 const CHAR_SPEED = 32;
@@ -136,7 +137,7 @@ function isCollapsed(text, outerTag) {
   );
 }
 
-export const HeroSection = () => {
+export const HeroSection = ({ onDone }) => {
   const [texts, setTexts] = useState({ name: "", heading: "", subtitle: "" });
   const [cursorKey, setCursorKey] = useState("name");
 
@@ -156,11 +157,12 @@ export const HeroSection = () => {
         if (pause) await sleep(pause);
       }
       setCursorKey(null);
+      if (!cancelled && onDone) onDone();
     };
 
     run();
     return () => { cancelled = true; };
-  }, []);
+  }, [onDone]);
 
   const nameCollapsed     = isCollapsed(texts.name, "p");
   const headingCollapsed  = isCollapsed(texts.heading, "h1");
@@ -207,4 +209,8 @@ export const HeroSection = () => {
       </div>
     </section>
   );
+};
+
+HeroSection.propTypes = {
+  onDone: PropTypes.func,
 };
