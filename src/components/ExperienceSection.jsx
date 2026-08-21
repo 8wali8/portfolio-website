@@ -9,8 +9,9 @@ const experiences = [
     period: "May 2026 — Aug 2026",
     location: "Los Gatos, CA",
     points: [
-      "Incoming. Real-time developer tooling for game session infrastructure.",
-      "Low-latency inspection, debugging, and live session-state analysis at scale.",
+      "Shipped an end-to-end real-time developer tooling feature for distributed game session infrastructure, leading collaboration with Product, Design, & cross-functional stakeholders from requirements through implementation, testing, and feedback iteration",
+      "Designed and implemented federated GraphQL backend APIs supporting 10,000+ requests per second, enabling scalable access to live distributed game session state",
+      "Integrated React/TypeScript UI workflows with backend APIs to support low-latency visualization, inspection, and debugging of production game sessions",
     ],
   },
   {
