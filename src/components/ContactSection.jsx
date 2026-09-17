@@ -4,7 +4,8 @@ import { TypedHeading } from "./TypedHeading";
 
 export const ContactSection = ({ open, onToggle, started }) => (
   <section id="contact" className="flex-1 flex flex-col justify-center border-t border-border">
-    <div className="container">
+    {/* The heading wraps its own toggle, so the button's text IS the heading. */}
+    <h2 className="container">
       <button
         onClick={onToggle}
         className="flex items-center gap-3 py-5 md:py-7 text-left w-full"
@@ -17,7 +18,7 @@ export const ContactSection = ({ open, onToggle, started }) => (
           className={`text-foreground/40 flex-shrink-0 transition-transform duration-500 ease-out ${open ? "rotate-180" : ""}`}
         />
       </button>
-    </div>
+    </h2>
   </section>
 );
 

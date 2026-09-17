@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
+import { isTypingSkipped, typingSleep } from "../lib/typing";
 
 const CHAR_SPEED = 32;
 
@@ -52,17 +53,26 @@ export const TypedHeading = ({ text, started, onDone }) => {
     if (!started) return;
     const full = `<h2>${text}</h2>`;
     let cancelled = false;
-    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    // Settle on the finished heading. onDone still fires either way: it is
+    // what starts the next section's heading.
+    const finish = () => {
+      if (cancelled) return;
+      setTyped(full);
+      setActive(false);
+      if (onDoneRef.current) onDoneRef.current();
+    };
 
     const run = async () => {
+      if (isTypingSkipped()) return finish();
       setActive(true);
       for (let i = 1; i <= full.length; i++) {
         if (cancelled) return;
+        if (isTypingSkipped()) return finish();
         setTyped(full.slice(0, i));
-        await sleep(CHAR_SPEED);
+        await typingSleep(CHAR_SPEED);
       }
-      setActive(false);
-      if (!cancelled && onDoneRef.current) onDoneRef.current();
+      finish();
     };
 
     run();
@@ -71,19 +81,25 @@ export const TypedHeading = ({ text, started, onDone }) => {
 
   const collapsed = isCollapsed(typed, "h2");
 
-  if (collapsed) {
-    return (
-      <h2 className="font-display text-4xl md:text-5xl lg:text-6xl tracking-tight">
-        {text}
-      </h2>
-    );
-  }
-
+  // Only spans: this renders inside the section's <h2> > <button>, where a
+  // block element would be invalid. The sr-only span is the heading's real
+  // text; the animated markup beside it is decorative.
   return (
-    <p className="font-display text-base leading-relaxed">
-      {renderBlock(typed, "h2")}
-      {active && <Cursor />}
-    </p>
+    <>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {collapsed ? (
+          <span className="font-display block text-4xl md:text-5xl lg:text-6xl tracking-tight">
+            {text}
+          </span>
+        ) : (
+          <span className="font-display block text-base leading-relaxed">
+            {renderBlock(typed, "h2")}
+            {active && <Cursor />}
+          </span>
+        )}
+      </span>
+    </>
   );
 };
 

@@ -1,13 +1,22 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { isTypingSkipped, typingSleep } from "../lib/typing";
 
 const CHAR_SPEED = 32;
 
+// Plain text of the finished hero, for the screen-reader copy below.
+const NAME_TEXT = "Ujjawal Prasad";
+const HEADING_TEXT = "I build high-performance systems.";
+const SUBTITLE_TEXT = "Purdue CS + Statistics.";
+
 const SCRIPT = [
-  { key: "name",     text: "<p>Ujjawal Prasad</p>",                                    pause: 320 },
+  { key: "name",     text: `<p>${NAME_TEXT}</p>`,                                       pause: 320 },
   { key: "heading",  text: "<h1>I build <em>high-performance</em> systems.</h1>",       pause: 280 },
-  { key: "subtitle", text: "<p>Purdue CS + Statistics.</p>",                            pause: 0   },
+  { key: "subtitle", text: `<p>${SUBTITLE_TEXT}</p>`,                                   pause: 0   },
 ];
+
+// The finished state, applied in one step when the animation is skipped.
+const FULL_TEXTS = Object.fromEntries(SCRIPT.map(({ key, text }) => [key, text]));
 
 const Cursor = () => (
   <span className="inline-block w-[2px] h-[0.85em] bg-foreground align-middle ml-px animate-cursor-blink" />
@@ -143,21 +152,30 @@ export const HeroSection = ({ onDone }) => {
 
   useEffect(() => {
     let cancelled = false;
-    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    // Settle on the finished hero. onDone still fires either way: it drives
+    // the cascade that reveals the section headings below.
+    const finish = () => {
+      if (cancelled) return;
+      setTexts(FULL_TEXTS);
+      setCursorKey(null);
+      if (onDone) onDone();
+    };
 
     const run = async () => {
       for (const { key, text, pause } of SCRIPT) {
         if (cancelled) return;
+        if (isTypingSkipped()) return finish();
         setCursorKey(key);
         for (let i = 1; i <= text.length; i++) {
           if (cancelled) return;
+          if (isTypingSkipped()) return finish();
           setTexts((t) => ({ ...t, [key]: text.slice(0, i) }));
-          await sleep(CHAR_SPEED);
+          await typingSleep(CHAR_SPEED);
         }
-        if (pause) await sleep(pause);
+        if (pause) await typingSleep(pause);
       }
-      setCursorKey(null);
-      if (!cancelled && onDone) onDone();
+      finish();
     };
 
     run();
@@ -174,7 +192,15 @@ export const HeroSection = ({ onDone }) => {
       className="relative flex flex-col justify-center flex-1 py-12 md:py-0"
     >
       <div className="container">
-        <div className="max-w-3xl">
+        {/* The animation types out HTML markup, which is noise read aloud —
+            assistive tech gets this clean copy, and owns the only <h1>. */}
+        <div className="sr-only">
+          <p>{NAME_TEXT}</p>
+          <h1>{HEADING_TEXT}</h1>
+          <p>{SUBTITLE_TEXT}</p>
+        </div>
+
+        <div className="max-w-3xl" aria-hidden="true">
 
           {/* Name: paragraph size while typing → text-xl once collapsed */}
           <p className={`font-display mb-8 ${nameCollapsed ? "text-xl" : "text-base"}`}>
@@ -182,13 +208,14 @@ export const HeroSection = ({ onDone }) => {
             {cursorKey === "name" && <Cursor />}
           </p>
 
-          {/* Heading: paragraph-sized <p> while typing → large <h1> once collapsed */}
+          {/* Heading: paragraph-sized while typing → large display text once
+              collapsed. Styled <p>, never an <h1> — the sr-only copy is the heading. */}
           {(texts.heading || cursorKey === "heading") && (
             headingCollapsed ? (
-              <h1 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight">
+              <p className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight">
                 {renderBlock(texts.heading, "h1", renderInlineContent)}
                 {cursorKey === "heading" && <Cursor />}
-              </h1>
+              </p>
             ) : (
               <p className="font-display text-base leading-relaxed">
                 {renderBlock(texts.heading, "h1", renderInlineContent)}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUp, RotateCcw } from "lucide-react";
+import { reducedMotion } from "../lib/typing";
 
 const YAW_STEP = Math.PI / 8;  // ~22.5° per click
 const PITCH_STEP = 0.2;
@@ -11,8 +12,30 @@ const DAMPING = 0.85;  // velocity retention — lower = more friction
 export const IkBackground = () => {
   const iframeRef = useRef(null);
   const [ready, setReady] = useState(false);
+  // The visualization is decoration: it loads Plotly in an iframe, so it waits
+  // until the browser is idle rather than competing with the real content.
+  const [src, setSrc] = useState(null);
   const targetYawRef = useRef(0);
   const targetPitchRef = useRef(0);
+
+  useEffect(() => {
+    let idleHandle = 0;
+    let timer = 0;
+    const load = () => setSrc("/ik-viz.html");
+
+    if (typeof window.requestIdleCallback === "function") {
+      idleHandle = window.requestIdleCallback(load, { timeout: 2500 });
+    } else {
+      timer = setTimeout(load, 1200);
+    }
+
+    return () => {
+      if (idleHandle && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleHandle);
+      }
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
 
   const adjust = (dir) => {
     if (dir === "left") targetYawRef.current -= YAW_STEP;
@@ -28,6 +51,7 @@ export const IkBackground = () => {
   };
 
   useEffect(() => {
+    if (!src) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -118,13 +142,18 @@ export const IkBackground = () => {
       let dir = 1;
       const radius = 3.8;
       const swingAmp = Math.PI * 0.75;
+      // Reduced motion parks the orbit. The spring below keeps running, so the
+      // arrow controls still move the camera — only the idle drift stops.
+      const orbiting = !reducedMotion();
       // Spring-damper state — internal to the loop, no refs needed.
       let curYaw = 0, curPitch = 0;
       let velYaw = 0, velPitch = 0;
       const tick = () => {
         if (stopped) return;
-        angle += 0.0015 * dir;
-        if (angle >= swingAmp || angle <= -swingAmp) dir *= -1;
+        if (orbiting) {
+          angle += 0.0015 * dir;
+          if (angle >= swingAmp || angle <= -swingAmp) dir *= -1;
+        }
         // Accelerate toward target, decelerate on approach.
         velYaw = velYaw * DAMPING + (targetYawRef.current - curYaw) * SPRING;
         velPitch = velPitch * DAMPING + (targetPitchRef.current - curPitch) * SPRING;
@@ -166,7 +195,6 @@ export const IkBackground = () => {
     };
 
     iframe.addEventListener("load", onLoad);
-    if (iframe.contentDocument?.readyState === "complete") onLoad();
 
     return () => {
       stopped = true;
@@ -174,7 +202,7 @@ export const IkBackground = () => {
       clearTimeout(fadeTimer);
       iframe.removeEventListener("load", onLoad);
     };
-  }, []);
+  }, [src]);
 
   const btnCls =
     "w-7 h-7 flex items-center justify-center rounded border border-border/50 bg-background/70 backdrop-blur-sm text-foreground/45 hover:text-foreground/80 hover:bg-background/90 transition-colors duration-150 cursor-pointer select-none";
@@ -192,7 +220,7 @@ export const IkBackground = () => {
       >
         <iframe
           ref={iframeRef}
-          src="/ik-viz.html"
+          src={src || undefined}
           title=""
           tabIndex={-1}
           className="absolute border-0 ik-bg-iframe"
