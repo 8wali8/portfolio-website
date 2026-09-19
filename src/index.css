@@ -81,6 +81,16 @@
   pointer-events: none;
 }
 
+/* Expanding a section is navigation, not decoration: honour the setting and
+   let the content simply be there. */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-unroll,
+  .animate-unroll-out {
+    animation: none;
+  }
+}
+
 @layer base {
   :root {
     /* Warm off-white / cream + near-black palette. */
